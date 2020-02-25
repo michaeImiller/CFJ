@@ -1,13 +1,22 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const path = require("path");
 
 module.exports = {
+    entry: ['./src/index.js', './src/css/style.scss'],
+    output: {
+        filename: 'js/index.js',
+        path: path.resolve(__dirname, 'dist')
+    },
     module: {
         rules: [
         {
-            test: /\.(js|jsx)$/,
+            test: /\.js$|jsx/,
             exclude: /node_modules/,
             use: {
               loader: "babel-loader"
+            },
+            query: {
+                presets: ['es2015']
             }
         },
         {
@@ -38,11 +47,5 @@ module.exports = {
             test: /\.png$/, loader: "url-loader?mimetype=image/png" 
         }
         ]
-    },
-        plugins: [
-            new HtmlWebPackPlugin({
-            template: "./src/index.html",
-            filename: "./index.html"
-        })
-    ]
+    }
 };

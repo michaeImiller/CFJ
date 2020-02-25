@@ -29,15 +29,16 @@ class Form extends Component {
 
   render() {
     return (
-      <form>
-      <img src = {logo2x} />
-        <input
-          type="text"
-          value={this.state.value}
-          onChange={this.handleChange}
-        />
-        <button onClick = {this.hanleSubmit} > Submit </button>
-      </form>
+      <div>
+        <form>
+          <input
+            type="text"
+            defaultValue={this.state.value}
+            onChange={this.handleChange}
+          />
+          <button onClick={this.hanleSubmit}> Submit </button>
+        </form>
+      </div>
     );
   }
 }
