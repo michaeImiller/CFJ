@@ -30,6 +30,7 @@ class Form extends Component {
   render() {
     return (
       <div>
+      <img src={logo2x} />
         <form>
           <input
             type="text"

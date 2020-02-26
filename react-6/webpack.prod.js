@@ -1,43 +1,48 @@
-const merge = require("webpack-merge");
-const common = require("./webpack.common.js");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 
-module.exports = merge(common, {
-    mode: 'production',
-    devtool: 'source-map',
+module.exports = {
     module: {
-        rules: [{
-            test: /\.(scss|sass)$/,
+        rules: [
+        {
+            test: /\.(js|jsx)$/,
+            exclude: /node_modules/,
+            use: {
+              loader: "babel-loader"
+            }
+        },
+        {
+            test: /\.html$/,
             use: [
-                MiniCssExtractPlugin.loader,
-                "css-loader",
-                "sass-loader"
+              {
+                loader: "html-loader"
+              }
             ]
-        }]
+        },
+        {
+            test: /\.css$/,
+            loader: 'style-loader!css-loader'
+        },
+        {
+            test: /\.scss$/,
+            use: [{
+               loader: 'style-loader'
+            },
+            {
+                loader: 'css-loader'
+            }, 
+            {
+                loader: 'sass-loader'
+            }]
+        },
+        { 
+            test: /\.png$/, loader: "url-loader?mimetype=image/png" 
+        }
+        ]
     },
-    plugins: [
-        // nó sẽ clean thư mục`dist/js & dist/css` trước khi build 
-        new CleanWebpackPlugin({
-            cleanOnceBeforeBuildPatterns: ['dist/js', 'dist/css'],
-        }),
-        // nó sẽ minify file css
-        new MiniCssExtractPlugin({
-            filename: "css/index.css"
-        }),
-        new HtmlWebpackPlugin({
-            title: 'Webpack React Example',
-            inject: false,
-            template: require('html-webpack-template'),
-            meta: [{
-                name: 'description',
-                content: 'A better default template for html-webpack-plugin.'
-            }],
-            mobile: true,
-            lang: 'en-US',
-            bodyHtmlSnippet: '<div id="root"></div>',
-            filename: 'index.html'
+        plugins: [
+            new HtmlWebPackPlugin({
+            template: "./src/index.html",
+            filename: "./index.html"
         })
     ]
-});
+};
