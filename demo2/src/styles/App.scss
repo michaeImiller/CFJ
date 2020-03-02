@@ -1,6 +1,6 @@
 h1 {
-    color: #27aedb;
-    text-align: center;
+  color: #27aedb;
+  text-align: center;
 }
 
 $body-color: #333;
@@ -10,8 +10,11 @@ body {
   margin: 0 50px;
 }
 
-.post{
+.post {
   padding: 10px;
   border: 1px solid #333;
   margin-bottom: 20px;
+}
+a {
+  display: block;
 }

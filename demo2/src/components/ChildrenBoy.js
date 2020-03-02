@@ -20,7 +20,7 @@ const Loading = () => (
 class ChildrenBoy extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="wrapper">
         <h2>LazyLoad Demo</h2>
         <div className="post-container">
           {data.map((post, key) => (

@@ -4,7 +4,10 @@ module.exports = {
         hints: 'warning'
     },
     output: {
-        pathinfo: false
+        // pathinfo: false,
+        path: path.join(__dirname, "/dist"),
+        publicPath: '/',
+        filename: '[name].bundle.js',
     },
     optimization: {
         namedModules: false,

@@ -1,0 +1,32 @@
+– webpack.config.js: File này là file chạy chung cho cả 2 môi trường
+
+– webpack.config.dev.js: Chỉ chạy cho môi trường dev, ở đây bạn có thể thêm các plugin auto log data. Để thuận tiện code việc phát triển sản phẩm
+
+– webpack.config.prod.js: Chỉ triển khai trên môi trường production, ở đây thường mọi người sẽ config minify, xoá comment,…
+
+set NODE_ENV
+
+
+---------ES6------------
+
+- Module: các đoạn code liên quan đc tách ra các phần khác nhau.
+
+- import và export trong ES6 để thay thế cho require() và module.export().
+
+- import dùng để nhập vào module từ 1 file khác.
+
+- Có thể export nhiều modules trong cùng 1 file
+
+- Rest Parameter: 1 hàm với số lượng Param có thể thay đổi tùy ý.
+VD: function f(param_1, param_2, ...rest_parameter) {
+  // ...
+}
+Rest parameter được phân biệt với các parameter thông thường thông qua 3 dấu chấm ... được đặt phía trước tên của parameter đặc biệt này.
+
+- Spread operator có cú pháp giống với rest paraterter tuy nhiên cả hai có ý nghĩa khác nhau. 
+Rest paramter được sử dụng khi khai báo hàm, ngược lại spread operator được sử dụng trong các câu lệnh, biểu thức hoặc khi gọi hàm.
+ 	+ Nối mảng: thay cho concat : arr_3 = [...arr_1, ...arr_2];
+	+ Copy Object
+	+ Gộp Object: var cloned_obj = { ...obj_1, ...obj_2 };
+
+
