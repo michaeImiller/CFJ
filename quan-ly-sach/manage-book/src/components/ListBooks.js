@@ -1,33 +1,27 @@
 import React, { Component} from "react";
-// import data from '../data/data';
+import {connect} from 'react-redux';
 
 class ListBooks extends Component {
 	constructor (props){
 		super(props);
 		this.state = {
-			data: []
+			
 		}
     }
-    componentWillMount(){
-        let data = JSON.parse(localStorage.getItem("data"));
-        this.setState({
-            data: data
-        })
-	}
 	render() {
-        console.log(this.state.data);
+        console.log(this.props.list);
         
-		const elmData = this.state.data.map((item, key ) => {
-			return(
-                <tr key = {key}>
-                    <td> {key +1 } </td>
-                    <td> {item.name} </td>
-                    <td> {item.author} </td>
-                    <td> {item.publisher} </td>
-                    <td> {item.amount} </td>
-                </tr>
-			);
-		});
+		// const elmData = data.map((item, key ) => {
+		// 	return(
+        //         <tr key = {key}>
+        //             <td> {key +1 } </td>
+        //             <td> {item.name} </td>
+        //             <td> {item.author} </td>
+        //             <td> {item.publisher} </td>
+        //             <td> {item.amount} </td>
+        //         </tr>
+		// 	);
+		// });
 		return (
 			<div className="list-books">
                 <table>
@@ -41,7 +35,7 @@ class ListBooks extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {elmData}
+                        
                     </tbody>
                     
                 </table>
@@ -51,5 +45,10 @@ class ListBooks extends Component {
 	}
 }
 
+const mapStateToProps = (state) => {
+    return{
+        list: state.demo
+    }
+};
 
-export default ListBooks;
+export default connect(mapStateToProps, null) (ListBooks);

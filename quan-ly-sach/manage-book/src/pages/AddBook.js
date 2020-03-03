@@ -1,5 +1,6 @@
 import React, { Component} from "react";
 import { v4 as uuidv4 } from 'uuid';
+import { Link } from "react-router-dom";
 
 class AddBook extends Component {
 	constructor (props){
@@ -15,12 +16,10 @@ class AddBook extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentWillMount(){
-        let data = JSON.parse(localStorage.getItem("data"));
+        const {data} = this.props;
         this.setState({
             data: data
         })
-        console.log(this.state.data);
-        
 	}
     handleChange(event){
         this.setState({ [event.target.name]: event.target.value });
@@ -28,6 +27,7 @@ class AddBook extends Component {
 
     handleSubmit(event){
         const {namebook, author, publisher, amount} = this.state;
+        
         const item_book = {
             id: uuidv4(),
             namebook : namebook,
@@ -36,16 +36,19 @@ class AddBook extends Component {
             amount: amount
         }
         console.log(item_book);
-        this.setState({
-            data: [...item_book]
-        });
-
-        console.log(this.state.data);
-        // localStorage.setItem.("data", item_book);
+        this.handleAdd(item_book);
         event.preventDefault();
     }
+
+    handleAdd (item){
+        const {data} = this.props;
+        this.setState({
+            data: data.concat(item)
+        });
+        console.log(this.state.data);
+        
+    }
 	render() {
-        console.log(this.state.namebook);
         
 		return (
             <div className="add-new-book">
