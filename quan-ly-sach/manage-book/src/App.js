@@ -4,7 +4,8 @@ import './App.scss';
 import AddBook from './pages/AddBook';
 import Home from './pages/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 
 // let initialState = {
 // 	data: data

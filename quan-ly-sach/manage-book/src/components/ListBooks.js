@@ -11,17 +11,17 @@ class ListBooks extends Component {
 	render() {
         console.log(this.props.list);
         
-		// const elmData = data.map((item, key ) => {
-		// 	return(
-        //         <tr key = {key}>
-        //             <td> {key +1 } </td>
-        //             <td> {item.name} </td>
-        //             <td> {item.author} </td>
-        //             <td> {item.publisher} </td>
-        //             <td> {item.amount} </td>
-        //         </tr>
-		// 	);
-		// });
+		const elmData = this.props.list.map((item, key) => {
+			return (
+				<tr key={key}>
+					<td> {key + 1} </td>
+					<td> {item.name} </td>
+					<td> {item.author} </td>
+					<td> {item.publisher} </td>
+					<td> {item.amount} </td>
+				</tr>
+			);
+    	});
 		return (
 			<div className="list-books">
                 <table>
@@ -35,11 +35,9 @@ class ListBooks extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        {elmData}
                     </tbody>
-                    
                 </table>
-				
 			</div>
 		);
 	}

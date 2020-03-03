@@ -5,3 +5,10 @@ export const listAll = () => {
         type: types.LIST_ALL
     }
 }
+
+export const addBook = (book)  => {
+    return {
+        type: types.ADD_BOOK,
+        book
+    }
+}

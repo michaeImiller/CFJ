@@ -1,6 +1,8 @@
 import React, { Component} from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from '../actions/index';
 
 class AddBook extends Component {
 	constructor (props){
@@ -15,19 +17,12 @@ class AddBook extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    componentWillMount(){
-        const {data} = this.props;
-        this.setState({
-            data: data
-        })
-	}
     handleChange(event){
         this.setState({ [event.target.name]: event.target.value });
     }
 
     handleSubmit(event){
-        const {namebook, author, publisher, amount} = this.state;
-        
+        const {namebook, author, publisher, amount, data} = this.state;
         const item_book = {
             id: uuidv4(),
             namebook : namebook,
@@ -36,7 +31,8 @@ class AddBook extends Component {
             amount: amount
         }
         console.log(item_book);
-        this.handleAdd(item_book);
+        this.props.onAddBook(item_book);
+        // this.handleAdd(item_book);
         event.preventDefault();
     }
 
@@ -68,6 +64,9 @@ class AddBook extends Component {
                     <button onClick = {this.handleSubmit}>
                         Submit
                     </button>
+                    <Link to="/">
+                        Trang chủ
+                    </Link>
                 </form>
             </div>
 		);
@@ -75,4 +74,18 @@ class AddBook extends Component {
 }
 
 
-export default AddBook;
+const mapStateToProps = state => {
+    return {
+
+    };
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        onAddBook : (book) => {
+            dispatch(actions.addBook(book));
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddBook);

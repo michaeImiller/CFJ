@@ -1,7 +1,7 @@
 import React, { Component} from "react";
 import Search from '../components/Search';
 import ListBooks from '../components/ListBooks';
-import { BrowserRouter as Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 
 class Home extends Component {
