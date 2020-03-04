@@ -12,3 +12,17 @@ export const addBook = (book)  => {
         book
     }
 }
+
+export const findBook = (id)  => {
+    return {
+        type: types.FIND_BOOK,
+        id
+    }
+}
+
+export const updateBook = (id)  => {
+    return {
+        type: types.UPDATE_BOOK,
+        id
+    }
+}

@@ -1,9 +1,10 @@
 import {combineReducers} from 'redux';
-// import data from '../data/data';
 import tasks from './tasks';
+import find from './find';
 
 const myReducer  = combineReducers({
-    demo: tasks
+    data: tasks,
+    find: find
 });
 
 export default myReducer;

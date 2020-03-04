@@ -8,17 +8,11 @@ class Home extends Component {
 	constructor (props){
 		super(props);
 		this.state = {
-            data: [],
-            item_book: '',
-            namebook: '',
-            author: '',
-            publisher: '',
-            amount: ''
+
         }
     }
     
 	render() {
-        // const {data} = this.props;
 		return (
             <div className="wrapper">
                 <div className="container">
