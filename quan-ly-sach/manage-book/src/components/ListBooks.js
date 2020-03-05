@@ -1,6 +1,7 @@
 import React, { Component} from "react";
 import {connect} from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import ItemBook from "./ItemBook";
 // import * as actions from '../actions';
 
 class ListBooks extends Component {
@@ -11,22 +12,6 @@ class ListBooks extends Component {
 		}
     }
 	render() {
-		// console.log(this.props.data);
-		
-		const elmData = this.props.data.map((item, key) => {
-			return (
-				<tr key={key} id = {item.id}>
-					<td> {key + 1} </td>
-					<td> {item.name} </td>
-					<td> {item.author} </td>
-					<td> {item.publisher} </td>
-					<td> {item.amount} </td>
-					<td>
-						<Link to={"/update-book/" + item.id }> Update Book </Link>
-					</td>
-				</tr>
-			);
-    	});
 		return (
 			<div className="list-books">
                 <table>
@@ -41,7 +26,11 @@ class ListBooks extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {elmData}
+						{this.props.data.map((item, key) => {
+							return (
+								<ItemBook item = {item} index = {key} key = {key} />
+							);
+						})}
                     </tbody>
                 </table>
 			</div>

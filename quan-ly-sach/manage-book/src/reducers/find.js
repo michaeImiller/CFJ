@@ -1,25 +1,25 @@
-import * as types from '../constants/ActionTypes';
-import { v4 as uuidv4 } from 'uuid';
-import _ from 'lodash';
+// import * as types from '../constants/ActionTypes';
+// import { v4 as uuidv4 } from 'uuid';
+// import _ from 'lodash';
 
-var data = JSON.parse(localStorage.getItem('data'));
+// var data = JSON.parse(localStorage.getItem('data'));
 
-var initialState = []
+// var initialState = []
 
-var myReducer = (state = initialState, action) => {
-	switch(action.type){
+// var myReducer = (state = initialState, action) => {
+// 	switch(action.type){
 
-		case types.FIND_BOOK:
-			// console.log(action);
-			// console.log(state);
-            const result = _.find( data, {id: action.id} );		
-            // console.log(result);
-			return {
-				result
-			};
+// 		case types.FIND_BOOK:
+// 			// console.log(action);
+// 			// console.log(state);
+//             const result = _.find( data, {id: action.id} );		
+//             // console.log(result);
+// 			return {
+// 				result
+// 			};
 
-		default: return state;
-	}
-};
+// 		default: return state;
+// 	}
+// };
 
-export default myReducer;
+// export default myReducer;

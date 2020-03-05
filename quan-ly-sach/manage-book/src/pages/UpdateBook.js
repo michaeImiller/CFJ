@@ -1,46 +1,42 @@
 import React, { Component} from "react";
+import {connect} from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { connect } from "react-redux";
-import * as actions from '../actions';
+// import * as actions from '../actions';
 
 class UpdateBook extends Component {
 	constructor (props){
 		super(props);
 		this.state = {
-            itemUpdate: {},
-        };
+			itemUpdate: {
+                name: '',
+                author: '',
+                publisher: '',
+                amount: ''
+            }
+        }
         this.handleChange = this.handleChange.bind(this);
-        // this.handleUpdate = this.handleUpdate.bind(this);
+        this.handleCancelForm = this.handleCancelForm.bind(this);
     }
+
     handleChange(event){
         this.setState({ [event.target.name]: event.target.value });
     }
 
-    // handleUpdate(event){
-    //     this.props.onUpdateBook(this.state.book.id);
-    //     event.preventDefault();
-    // }
-
     componentDidMount(){
-        //truyền vào id lấy từ url
-        this.props.onFindBook(this.props.match.params.id);
         this.setState({
-            itemUpdate: this.props.itembook.find.result
+            itemUpdate: this.props.itemUpdate
         })
     }
-
-	render() {
-        let {itemUpdate} = this.state;
-        // console.log(this.props.itembook.find.result);
-        
+    
+    handleCancelForm(){
+        this.props.onCancel();
+    }
+	render() {	
+        const {itemUpdate, onCancel} = this.props;
         return (
-            <div className="add-new-book">
-                <h2> Cập nhật sách </h2>
-                <Link to="/">
-                    Trang chủ
-                </Link>
-                <form>
-                    
+            <form className = "pop-up-update" >
+                <h3> Sửa thông tin sách </h3>
+                
                     <label> Tên sách </label>
                     <input name="name" value = {itemUpdate.name}   onChange = {this.handleChange} />
 
@@ -55,24 +51,20 @@ class UpdateBook extends Component {
                     <button >
                         Xác nhận
                     </button>
-                </form>
-            </div>
-		);
+                    <button onClick = {this.handleCancelForm}>
+                        Cancel
+                    </button>
+    
+            </form>
+        )
 	}
 }
 
-const mapStateToProps = state => {
-    return {
-        itembook: state
-    };
-};
-
-const mapDispatchToProps = (dispatch, props) => {
-    return {
-        onFindBook : (id) => {
-            dispatch(actions.findBook(id));
-        }
+const mapStateToProps = (state) => {
+    return{
+        data: state.data
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UpdateBook);
+
+export default connect(mapStateToProps, null) (UpdateBook);
