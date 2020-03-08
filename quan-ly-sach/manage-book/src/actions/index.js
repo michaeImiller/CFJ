@@ -20,9 +20,15 @@ export const findBook = (id)  => {
     }
 }
 
-export const updateBook = (id)  => {
+// export const updateBook = (data)  => {
+//     return {
+//         type: types.UPDATE_BOOK,
+//         data,
+//     }
+// }
+export const deleteBook = (id)  => {
     return {
-        type: types.UPDATE_BOOK,
+        type: types.DELETE_BOOK,
         id
     }
 }

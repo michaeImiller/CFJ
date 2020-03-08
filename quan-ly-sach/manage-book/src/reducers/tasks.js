@@ -23,10 +23,14 @@ var myReducer = (state = initialState, action) => {
 			state.push(newBook);
 			localStorage.setItem('data', JSON.stringify(state));
 			return [...state];
+
+		case types.DELETE_BOOK:
+			var deleteItem = _.remove(state, function(item) {
+  				return item.id === action.id;
+			});
+			// console.log(action, state);
 			
-			
-		case types.UPDATE_BOOK:
-			console.log(action);
+			localStorage.setItem("data", JSON.stringify(state));
 			return [...state];
 
 		default: return state;

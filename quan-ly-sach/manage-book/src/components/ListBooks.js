@@ -1,22 +1,40 @@
 import React, { Component} from "react";
 import {connect} from 'react-redux';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { browserHistory } from "react-router";
 import ItemBook from "./ItemBook";
-// import * as actions from '../actions';
+import _ from "lodash";
 
 class ListBooks extends Component {
 	constructor (props){
 		super(props);
 		this.state = {
-			
+			data: this.props.data,
 		}
-    }
+		this.handleUpdate = this.handleUpdate.bind(this);
+	}
+
+	handleUpdate(itemUpdate){
+		const {data} = this.state;
+		var index = _.findIndex(data, { id: itemUpdate.id });
+		data.splice(index, 1, {
+			id: itemUpdate.id,
+			name: itemUpdate.name,
+			author: itemUpdate.author,
+			publisher: itemUpdate.publisher,
+			amount: itemUpdate.amount
+		});
+		this.setState({
+			data: data,
+		});
+		localStorage.setItem("data", JSON.stringify(data));
+	}
 	render() {
 		return (
 			<div className="list-books">
                 <table>
                     <thead>
-                        <tr>
+                        <tr spclass="spacer">
                             <th> STT </th>
                             <th> Tên sách </th>
                             <th> Tác giả </th>
@@ -26,9 +44,9 @@ class ListBooks extends Component {
                         </tr>
                     </thead>
                     <tbody>
-						{this.props.data.map((item, key) => {
+						{this.state.data.map((item, key) => {
 							return (
-								<ItemBook item = {item} index = {key} key = {key} />
+								<ItemBook item = {item} index = {key} key = {key} onUpdateBook = {this.handleUpdate} />
 							);
 						})}
                     </tbody>

@@ -18,11 +18,11 @@ class Home extends Component {
                 <div className="container">
                     <h2> Quản lí sách </h2>
                     <Link to="/add-book">
-                        <button >
+                        <button className="add-book" >
                             Thêm mới
                         </button>
                     </Link>
-                    <Search  />
+                    {/* <Search  /> */}
                     <ListBooks />
                 </div>
             </div>

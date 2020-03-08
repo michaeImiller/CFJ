@@ -4,7 +4,7 @@ import find from './find';
 
 const myReducer  = combineReducers({
     data: tasks,
-    find: find
+    find: find,
 });
 
 export default myReducer;

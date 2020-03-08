@@ -18,9 +18,11 @@ class UpdateBook extends Component {
         this.handleCancelForm = this.handleCancelForm.bind(this);
     }
 
-    handleChange(event){
-        this.setState({ [event.target.name]: event.target.value });
-    }
+    handleChange(event) {
+        const { itemUpdate } = this.state;
+        itemUpdate[event.target.name] = event.target.value;
+        this.setState({ itemUpdate });
+  }
 
     componentDidMount(){
         this.setState({
@@ -31,12 +33,23 @@ class UpdateBook extends Component {
     handleCancelForm(){
         this.props.onCancel();
     }
+
+    handleUpdate(itemUpdate){
+        // console.log(itemUpdate);
+        this.props.onUpdateBook(itemUpdate);
+        
+        
+
+    }
 	render() {	
-        const {itemUpdate, onCancel} = this.props;
+        const {itemUpdate} = this.state;
+        const {onUpdateBook} = this.props;
+        // console.log(onUpdateBook);
+        
         return (
-            <form className = "pop-up-update" >
-                <h3> Sửa thông tin sách </h3>
-                
+            <div className="form-update">
+                <form className = "pop-up-update" >
+                <h3> Sửa thông tin sách </h3>       
                     <label> Tên sách </label>
                     <input name="name" value = {itemUpdate.name}   onChange = {this.handleChange} />
 
@@ -48,14 +61,15 @@ class UpdateBook extends Component {
 
                     <label> Số lượng  </label>
                     <input name="amount" value = {itemUpdate.amount} onChange = {this.handleChange} />
-                    <button >
+                    <button className="submit" onClick = {() => this.handleUpdate(itemUpdate)} >
                         Xác nhận
                     </button>
-                    <button onClick = {this.handleCancelForm}>
+                    <button className="cancel" onClick = {this.handleCancelForm}>
                         Cancel
                     </button>
-    
-            </form>
+                </form>
+            </div>
+            
         )
 	}
 }

@@ -1,12 +1,14 @@
 import React, { Component} from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, Redirect, } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from '../actions';
+
 
 class AddBook extends Component {
 	constructor (props){
 		super(props);
 		this.state = {
+            redirectToHome: false
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,17 +19,26 @@ class AddBook extends Component {
 
     handleSubmit(event){
         this.props.onAddBook(this.state);
+        this.setState({
+            redirectToHome: true
+        })
         event.preventDefault();
     }
 
 	render() {
+        const redirectToHome = this.state.redirectToHome;
+        if (redirectToHome === true) {
+            return <Redirect to="/" />;
+        }
 		return (
-            <div className="add-new-book">
+            <div className="add-new-book container">
                 <h2> Tạo mới sách </h2>
                 <Link to="/">
-                    Trang chủ
+                    <a className = "back-home">
+                        Trang chủ
+                    </a>
                 </Link>
-                <form>
+                <form className = "pop-up-update" >
                     <label> Tên sách </label>
                     <input name="name"  onChange = {this.handleChange} />
 
@@ -38,7 +49,7 @@ class AddBook extends Component {
                     <input name="publisher" onChange = {this.handleChange} />
 
                     <label> Số lượng  </label>
-                    <input name="amount" onChange = {this.handleChange} />
+                    <input name="amount" type="number" onChange = {this.handleChange} />
                     <button onClick = {this.handleSubmit}>
                         Xác nhận
                     </button>
@@ -50,7 +61,7 @@ class AddBook extends Component {
 
 const mapStateToProps = state => {
     return {
-
+        state
     };
 };
 
@@ -59,6 +70,7 @@ const mapDispatchToProps = (dispatch, props) => {
         onAddBook : (book) => {
             dispatch(actions.addBook(book));
         }
+
     }
 };
 
