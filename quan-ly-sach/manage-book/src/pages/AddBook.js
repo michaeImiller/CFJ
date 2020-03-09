@@ -53,6 +53,11 @@ class AddBook extends Component {
                     <button onClick = {this.handleSubmit}>
                         Xác nhận
                     </button>
+                    <Link to="/">
+                        <button className="btn-cancel">
+                            Cancel
+                        </button>
+                    </Link>
                 </form>
             </div>
 		);

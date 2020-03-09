@@ -1,7 +1,6 @@
 import React, { Component} from "react";
 import {connect} from 'react-redux';
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
-import { browserHistory } from "react-router";
+// import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ItemBook from "./ItemBook";
 import _ from "lodash";
 

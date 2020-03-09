@@ -113,12 +113,11 @@ form {
     }
 }
 
-a.back-home {
-    color: #637381;
-    font-size: 1.4rem;
-    color: #637381;
+button.btn-cancel {
+    background-color: red;
     text-decoration: none;
     z-index: 99;
-    text-align: left;
     text-decoration: none;
+    color: #fff;
+    margin-left: 10px;
 }

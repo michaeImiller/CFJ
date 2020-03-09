@@ -43,8 +43,6 @@ class UpdateBook extends Component {
     }
 	render() {	
         const {itemUpdate} = this.state;
-        const {onUpdateBook} = this.props;
-        // console.log(onUpdateBook);
         
         return (
             <div className="form-update">
