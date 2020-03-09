@@ -1,0 +1,2 @@
+export const HOME_FETCH_TASKS = 'HOME_FETCH_TASKS';
+export const HOME_SET_TASKS = 'HOME_SET_TASKS';
