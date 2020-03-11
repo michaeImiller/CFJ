@@ -1,0 +1,3 @@
+scss: npm install node-sass
+
+route: npm install react-router-dom
