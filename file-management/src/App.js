@@ -1,40 +1,23 @@
-import React, {useState, useEffect} from "react"
+import React, {Component} from "react";
 import files from './data/data';
+import Sidebar from './components/SideBar';
 
-function Tree({ comment }) {
-  const nestedComments = (comment.children || []).map(comment => {
-    return <Tree key={comment.id} comment={comment} type="child" />
-  })
- 
-  return (
-    <div style={{"marginLeft": "25px", "marginTop": "10px"}}>
-      <div>{comment.name}</div>
-      {nestedComments}
-    </div>
-  )
-}
- 
-function App() {
-  const [data, setData] = useState([]);
+class App extends Component{
+	constructor(props){
+		super(props);
+		this.state = {
+			data: files
+		}
+	}
 
-
-  useEffect(() => {
-    setData(files)
-  });
-  console.log(data);
-  
-  
-  return (
-    <div>
-      {
-        data.map((comment) => {
-          return (
-            <Tree key={comment.id} comment={comment} />
-          )
-        })
-      }
-    </div>
-  )
+	render(){
+		const {data} = this.state;
+		return(
+			<div>
+				<Sidebar data={data} />
+			</div>
+		);
+	}
 }
  
 export default App;
