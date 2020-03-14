@@ -3,7 +3,12 @@ import files from './data/data';
 
 function Tree({ comment }) {
   const nestedComments = (comment.children || []).map(comment => {
-    return <Tree key={comment.id} comment={comment} type="child" />
+    return (
+      <div>
+        <button> Show children </button>
+        <Tree key={comment.id} comment={comment} type="child" />
+      </div>
+    );
   })
  
   return (
