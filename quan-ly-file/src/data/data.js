@@ -17,7 +17,7 @@ const files = [
             type: "folder",
             children: [
               {
-                id_parent: 2,
+                id_parent: 3,
                 id: 8,
                 name: "F3 1 Root 1",
                 type: "folder",

@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import files from "./data/data";
 import Sidebar from "./components/SideBar";
-
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Breadcrumbs from "react-router-dynamic-breadcrumbs";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: files
     };
   }
 
@@ -15,7 +14,12 @@ class App extends Component {
     const { data } = this.state;
     return (
       <div className="container">
-        <Sidebar data={data} />
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Sidebar} />
+            <Route exact path="/" component={Sidebar} />
+          </Switch>
+        </Router>
       </div>
     );
   }
