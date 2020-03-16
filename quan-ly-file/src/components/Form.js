@@ -15,12 +15,14 @@ class Form extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-//   handleSubmit(){
-//       this.props.onAdd();
-//   } 
+  handleSubmit(event){
+      const {id, name, type } = this.state;
+      this.props.onAdd(id, name, type);
+      event.preventDefault();
+  } 
 
   render() {
-      const {id, name, type } = this.state;
+    const {id, name, type } = this.state;
     return (
       <div>
         <form className="">
@@ -33,7 +35,7 @@ class Form extends React.Component {
           <label> Loại </label>
           <input name="type" value={type} onChange={this.handleChange} />
 
-          <button onClick={this.handleSubmit}>Xác nhận</button>
+          <button onClick={() => this.handleSubmit(id, name, type)}> Xác nhận </button>
         </form>
       </div>
     );

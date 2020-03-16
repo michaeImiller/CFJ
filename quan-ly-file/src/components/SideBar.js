@@ -4,83 +4,90 @@ import Breadcrumb from "./Breadcrumb";
 import Form from './Form';
 // import SideBarItem from "./SideBarItem";
 
+let data = files;
+
 class SideBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isShowForm: false,
       id_parent: 0,
-      path: '',
-      item_add: {},
-      data: files,
-      dataShow: [],
+      item_add: {      },
+      dataCurrent: [],
+
     };
     this.getChildren = this.getChildren.bind(this);
-  }
-  
-  getChildren(id_parent, path){
-    const {data, dataShow} = this.state;
-    this.setState({
-      id_parent: id_parent,
-      path: path
-    });
-    data.map((item, key) => {
-      if(item.id_parent === id_parent ){
-        this.setState({
-          dataShow: item
-        })
-      }
-    });
-    
+    this.handleAdd = this.handleAdd.bind(this);
+    this.toggleForm = this.toggleForm.bind(this);
   }
 
-  // handleAdd(item){
-  //   this.setState({ isShowForm : !this.state.isShowForm});
-  // }
+  componentDidMount() {
+    const { id_parent } = this.state;
+    this.getChildren(id_parent);
+  }
+
+  getChildren(id_parent) {
+    const dataCurrent = data.filter(item => item.id_parent === id_parent);
+    if (dataCurrent.length > 0) {
+      this.setState({ dataCurrent, id_parent: dataCurrent[0].id_parent });
+    }
+  }
 
   handleBack() {
-    const {data, path} = this.state;
-    for (var i = 0; i < data.length; i++) {
-      if (data[i].path === path) {
-        // this.setState({dataShow: (data[i])})
-        console.log(data[i]);
-        
-      }
+    const { id_parent } = this.state;
+    const dataNew = data.find(item => item.id === id_parent);
+    if(dataNew){
+      this.getChildren(dataNew.id_parent);
     }
-    console.log(this.state.dataShow);
-    
   }
-  
+
+  handleAdd(id, name, type, event){
+    const itemAdd = {
+      id: id,
+      id_parent: 1,
+      name: name,
+      type: type
+    }
+    this.setState({item_add :itemAdd })
+    console.log(this.state.item_add);
+    event.preventDefault();
+  }
+
+  toggleForm(){
+    this.setState({ isShowForm : !this.state.isShowForm});
+  }
+
   render() {
-    const { isShowForm, data, id_parent, dataShow } = this.state;
-    // const item_add = {
-    //   id: null,
-    //   id_parent: this.state.id_parent,
-    //   name: '',
-    //   type: '',
-    //   children: [],
-    // }
+    const { isShowForm, dataCurrent, id_parent } = this.state;
+
+    const item_add = {
+      id: null,
+      id_parent: this.state.id_parent,
+      name: '',
+      type: '',
+      children: [],
+    }
+
     return (
       <div className="App">
         <div className="actions">
-          <button onClick= {this.handleBack}> Thêm mới </button>
+          <button onClick={this.toggleForm}> Thêm mới </button>
         </div>
 
-        {isShowForm ? <Form /> : null}
-
-        <a href="/#" onClick = {(id) => this.handleBack(id)}> Quay lại </a>
-        
-        {dataShow.map((item, key) => {
-          if(item.id_parent === id_parent ){
-            return (
+        {isShowForm ? <Form onAdd = {(event) => this.handleAdd(event)} /> : null}
+        {
+          (id_parent >0) ? (<a href="/#" onClick={(id) => this.handleBack(id)}> Quay lại </a>) : null
+        }
+        {dataCurrent.map((item, key) => {
+          return (
             <div key={key}>
-              <a href="/#" onClick={() => this.getChildren(item.id, item.path)}>
+              <a href="/#" onClick={() => this.getChildren(item.id)}>
                 {item.name}
               </a>
             </div>
           );
-          }
-        })}
+        }
+        )}
       </div>
     );
   }
