@@ -11,13 +11,12 @@ class App extends Component {
   }
 
   render() {
-    const { data } = this.state;
     return (
       <div className="container">
         <Router>
           <Switch>
             <Route exact path="/" component={Sidebar} />
-            <Route exact path="/" component={Sidebar} />
+            {/* <Route exact path="/" component={Sidebar} /> */}
           </Switch>
         </Router>
       </div>

@@ -7,19 +7,19 @@ const files = [
       {
         id_parent: 1,
         id: 2,
-        name: "F1 1 Root 1",
+        name: "Cấp 2 --1",
         type: "folder",
         children: [
           {
             id_parent: 2,
             id: 3,
-            name: "F2 1 Root 1",
+            name: "Cấp 3 --1",
             type: "folder",
             children: [
               {
                 id_parent: 3,
                 id: 8,
-                name: "F3 1 Root 1",
+                name: "Cấp 4",
                 type: "folder",
                 children: []
               }
@@ -28,14 +28,14 @@ const files = [
           {
             id_parent: 2,
             id: 3,
-            name: "F2 2 Root 1",
+            name: "Cấp 3 --2",
             type: "folder",
             children: []
           },
           {
             id_parent: 2,
             id: 3,
-            name: "F2 3 Root 1",
+            name: "Cấp 3 --3",
             type: "folder",
             children: []
           }
@@ -44,14 +44,14 @@ const files = [
       {
         id: 4,
         id_parent: 1,
-        name: "F1 2 Root 1",
+        name: "Cấp 2 ---2",
         type: "folder",
         children: []
       },
       {
         id_parent: 1,
         id: 6,
-        name: "F1 3",
+        name: "Cấp 2 ---3",
         type: "folder",
         children: []
       }

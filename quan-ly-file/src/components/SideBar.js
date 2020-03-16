@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import files from "../data/data";
+import files from "../data/data-2";
 import Breadcrumb from "./Breadcrumb";
 import Form from './Form';
 // import SideBarItem from "./SideBarItem";
@@ -9,64 +9,77 @@ class SideBar extends Component {
     super(props);
     this.state = {
       isShowForm: false,
-      id_parent: null,
-      data_children: files,
-      item_breadcrumb: "",
-      item_add: {}
+      id_parent: 0,
+      path: '',
+      item_add: {},
+      data: files,
+      dataShow: [],
     };
     this.getChildren = this.getChildren.bind(this);
-    this.searchIdFather = this.searchIdFather.bind(this);
   }
-  getChildren(id, name) {
-    const { data_children } = this.state;
-    const father = this.searchIdFather(id, data_children);
-    // console.log(name);
+  
+  getChildren(id_parent, path){
+    const {data, dataShow} = this.state;
     this.setState({
-      data_children: father.children,
-      id_parent: id,
-      item_breadcrumb: this.state.item_breadcrumb.concat('/', name)
+      id_parent: id_parent,
+      path: path
     });
-    console.log(id);
+    data.map((item, key) => {
+      if(item.id_parent === id_parent ){
+        this.setState({
+          dataShow: item
+        })
+      }
+    });
+    
   }
 
-  searchIdFather (id, array){
-    const { data_children } = this.state;
-    for (var i = 0; i < data_children.length; i++) {
-      if (data_children[i].id === id) {
-        return array[i];
+  // handleAdd(item){
+  //   this.setState({ isShowForm : !this.state.isShowForm});
+  // }
+
+  handleBack() {
+    const {data, path} = this.state;
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].path === path) {
+        // this.setState({dataShow: (data[i])})
+        console.log(data[i]);
+        
       }
     }
-  }
-
-  handleAdd(item){
-    this.setState({ isShowForm : !this.state.isShowForm});
+    console.log(this.state.dataShow);
+    
   }
   
   render() {
-    const { data_children, item_breadcrumb, isShowForm } = this.state;
-    // console.log(item_breadcrumb);
-    const item_add = {
-      id: null,
-      id_parent: this.state.id_parent,
-      name: '',
-      type: '',
-      children: [],
-    }
+    const { isShowForm, data, id_parent, dataShow } = this.state;
+    // const item_add = {
+    //   id: null,
+    //   id_parent: this.state.id_parent,
+    //   name: '',
+    //   type: '',
+    //   children: [],
+    // }
     return (
       <div className="App">
         <div className="actions">
-          <button onClick={() => this.handleAdd()}> Thêm mới </button>
+          <button onClick= {this.handleBack}> Thêm mới </button>
         </div>
+
         {isShowForm ? <Form /> : null}
-        {/* <Breadcrumb item_breadcrumb={item_breadcrumb} /> */}
-        {data_children.map((item, key) => {
-          return (
+
+        <a href="/#" onClick = {(id) => this.handleBack(id)}> Quay lại </a>
+        
+        {dataShow.map((item, key) => {
+          if(item.id_parent === id_parent ){
+            return (
             <div key={key}>
-              <a href="/#" onClick={() => this.getChildren(item.id, item.name)}>
+              <a href="/#" onClick={() => this.getChildren(item.id, item.path)}>
                 {item.name}
               </a>
             </div>
           );
+          }
         })}
       </div>
     );
