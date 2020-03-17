@@ -1,0 +1,110 @@
+.App {
+  text-align: left;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+h2{
+  margin: 20px 0;
+}
+
+button {
+  padding: 6px 25px;
+  border: none;
+  border-radius: 10px;
+  &.success{
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+  &.info{
+    color: #fff;
+    background-color: #117a8b;
+    border-color: #10707f;
+  }
+  &.danger{
+    color: #fff;
+    background-color: #bd2130;
+    border-color: #b21f2d;
+  }
+  &.secondary{
+    color: #fff;
+    background-color: #545b62;
+    border-color: #4e555b;
+  }
+}
+
+input{
+  border-radius: 10px;
+  padding: 2px 8px;
+  width: 200px;
+  border: 1px solid #333;
+}
+.item-folder{
+  margin-bottom: 15px;
+  i{
+    margin-right: 10px;
+  }
+  .group-actions{
+    float: right;
+    button{
+      margin-left: 10px;
+    }
+  }
+}
+
+.btn-back{
+  height: 30px;
+}
+
+.form-general{
+  label, input, button{
+    margin: 0 10px;
+  }
+}
+
+.detail-item{
+  width: 80%;
+  span{
+    &.key{
+      width: 30%;
+    }
+    &.value{
+      width: 70%;
+      float: right;
+    }
+    }
+  }

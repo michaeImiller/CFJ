@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import files from "../data/data-2";
 import Form from './Form';
-import SelectParent from './SelectParent';
 import ShowDetail from './ShowDetail';
 import _ from 'lodash';
 
-let data = files;
+// let data = files;
 
 class SideBar extends Component {
   constructor(props) {
@@ -15,13 +14,15 @@ class SideBar extends Component {
       isShowDetail: false,
       id_parent: 0,
       item_add: {},
+      data: files,
       itemSelected: {},
       dataCurrent: [],
       id_max: 0,
+      idSeft: null,
 
     };
     this.getChildren = this.getChildren.bind(this);
-    this.handleAdd = this.handleAdd.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
     this.closeForm = this.closeForm.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
@@ -36,6 +37,7 @@ class SideBar extends Component {
   }
 
   findIdMax(){
+    const {data} = this.state;
     let idMax = data[0].id;
     for(var i =0; i < data.length; i++ ){
       if(data[i].id > idMax ) idMax = data[i].id;
@@ -44,13 +46,15 @@ class SideBar extends Component {
   }
 
   getChildren(id_parent) {
+    const {data} = this.state;
     const dataCurrent = data.filter(item => item.id_parent === id_parent);
-    if (dataCurrent.length > 0) {
+    if (dataCurrent.length) {
       this.setState({ dataCurrent, id_parent: dataCurrent[0].id_parent });
     }
   }
 
   handleBack() {
+    const {data} = this.state;
     const { id_parent } = this.state;
     const dataNew = data.find(item => item.id === id_parent);
     if(dataNew){
@@ -58,22 +62,35 @@ class SideBar extends Component {
     }
   }
 
-  handleAdd(item){
-    const {dataCurrent} = this.state;
-    const itemAdd = item;
-    dataCurrent.push(itemAdd);
+  handleSubmit(item){
+    const {data, dataCurrent, itemSelected, id_max} = this.state;
+    if(_.isEmpty(itemSelected)){
+      const itemAdd = item;
+      // neu itemSelected rong thi them moi
+      data.push(itemAdd);
+    }
+    else{
+      //neu itemSelected ko rong thi update
+      var index = _.findIndex(data, { id: itemSelected.id });
+      dataCurrent.splice(index, 1, item);
+      data.splice(index, 1, item);
+    }
     this.setState({
       dataCurrent : dataCurrent,
-      isShowForm : false
+      data: data,
+      isShowForm : false,
+      itemSelected: {},
+      id_max : this.state.id_max + 1
   })
   }
   
-  toggleForm(){
-    this.setState({ isShowForm : !this.state.isShowForm});
+  toggleForm(id){
+    this.setState({ isShowForm : !this.state.isShowForm, idSeft: id});
+    // console.log(id);
   }
 
   closeForm(){
-    this.setState({ isShowForm : false});
+    this.setState({ isShowForm : false, itemSelected: {}});
   }
 
   handleShowDetail(item) {
@@ -81,11 +98,11 @@ class SideBar extends Component {
   }
 
   closeDetail (){
-    this.setState({isShowDetail: false})
+    this.setState({isShowDetail: false, itemSelected: {}})
   }
 
   handleEdit(item){
-    this.setState({item_edit: item, isShowForm: true});
+    this.setState({itemSelected: item, isShowForm: true});
   }
 
   handleDelete(item){
@@ -99,46 +116,42 @@ class SideBar extends Component {
   }
 
   render() {
-    const { isShowForm, dataCurrent, id_parent, itemSelected,isShowDetail } = this.state;
-    // console.log(dataCurrent);
-    
-    const item_add = {
-      id: null,
-      id_parent: this.state.id_parent,
-      name: '',
-      type: '',
-      children: [],
-    }
-
+    const { isShowForm, dataCurrent, id_parent, itemSelected,isShowDetail, id_max, idSeft } = this.state;
     return (
       <div className="App">
-        <div className="actions">
-          <button onClick={this.toggleForm}> Thêm mới </button>
+        {/* Form Add/Edit  */}
+        {isShowForm ? <Form idSeft = {idSeft} id_max = {id_max} id_parent = {id_parent} onClickCancel = {this.closeForm} onAdd = {this.handleSubmit} itemEdit = {this.state.itemSelected} /> : null}
+
+        {/* Hiển thị thông tin */}
+        {isShowDetail ? <ShowDetail onCloseDetail = {this.closeDetail} itemSelected = {itemSelected} /> : null}
+      
+        {/* Quay lại */}
+        <div className = "btn-back">
+        { (id_parent >0) ? (<a href="/#" onClick={(id) => this.handleBack(id)}> Quay lại </a>) : null }
         </div>
 
-        {/* <SelectParent /> */}
-
-        {isShowForm ? <Form onClickCancel = {this.closeForm} onAdd = {this.handleAdd} itemEdit = {this.state.item_edit} /> : null}
-
-        {isShowDetail ? <ShowDetail onCloseDetail = {this.closeDetail} itemSelected = {itemSelected} /> : null}
-        {
-          (id_parent >0) ? (<a href="/#" onClick={(id) => this.handleBack(id)}> Quay lại </a>) : null
-        }
+        {/* Hiển thị danh sách */}
         {dataCurrent.map((item, key) => {
           return (
-            <div key={key}>
-              <a href="/#" onClick={() => this.getChildren(item.id)}>
+            <div key={key} className = "item-folder" >
+              <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+              <a className="name-folder" href="/#" onClick={() => this.getChildren(item.id)}>
                 {item.name}
               </a>
-              <button onClick = {() =>this.handleShowDetail(item)}>
-                Chi tiết
-              </button>
-              <button onClick = {() => this.handleEdit(item)}>
-                Edit
-              </button>
-              <button onClick = {() => this.handleDelete(item)}>
-                Delete
-              </button>
+             <div className="group-actions">
+                <button className="success" onClick={() => this.toggleForm(item.id)}> 
+                  Tạo thư mục con 
+                </button>
+                <button className="info" onClick = {() =>this.handleShowDetail(item)}>
+                  Chi tiết
+                </button>
+                <button className="success" onClick = {() => this.handleEdit(item)}>
+                  Edit
+                </button>
+                <button className="danger" onClick = {() => this.handleDelete(item)}>
+                  Delete
+                </button>
+             </div>
             </div>
           );
         }

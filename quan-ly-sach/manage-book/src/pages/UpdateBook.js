@@ -37,9 +37,6 @@ class UpdateBook extends Component {
     handleUpdate(itemUpdate){
         // console.log(itemUpdate);
         this.props.onUpdateBook(itemUpdate);
-        
-        
-
     }
 	render() {	
         const {itemUpdate} = this.state;

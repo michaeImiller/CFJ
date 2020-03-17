@@ -13,10 +13,10 @@ class App extends Component {
   render() {
     return (
       <div className="container">
+      <h2> Quản lý thư mục </h2>
         <Router>
           <Switch>
             <Route exact path="/" component={Sidebar} />
-            {/* <Route exact path="/" component={Sidebar} /> */}
           </Switch>
         </Router>
       </div>

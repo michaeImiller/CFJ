@@ -14,8 +14,6 @@ class ShowDetail extends Component {
     }
     render() {
         const {itemSelected} = this.props;
-        console.log(itemSelected.created_at);
-        
         return (
             <div className = "detail-item" >
                 <p>
@@ -39,7 +37,7 @@ class ShowDetail extends Component {
                         Ngày tạo :
                     </span>
                     <span className="value">
-                        {Date.parse(itemSelected.created_at)}
+                        {Date(itemSelected.created_at)}
                     </span>
                 </p>
                 <p>
@@ -47,7 +45,7 @@ class ShowDetail extends Component {
                         Ngày sửa gần nhất :
                     </span>
                     <span className="value">
-                        {Date.parse(itemSelected.updated_at)}
+                        {Date(itemSelected.updated_at)}
                     </span>
                 </p>
 
