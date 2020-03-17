@@ -5,10 +5,15 @@ class Form extends React.Component {
     super(props);
     this.state = {
         id: null,
+        id_parent: 0,
         name: '',
-        type: ''
+        type: '',
+        created_at: '',
+        updated_at: ''
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
 
   handleChange(event) {
@@ -16,18 +21,36 @@ class Form extends React.Component {
   }
 
   handleSubmit(event){
-      const {id, name, type } = this.state;
-      this.props.onAdd(id, name, type);
+      const {id, name, type, id_parent } = this.state;
+      let itemAdd = {
+        id: id,
+        id_parent: id_parent,
+        name: name,
+        type: type,
+        created_at: new Date(),
+        updated_at: new Date(),
+      }
+      this.props.onAdd(itemAdd);
       event.preventDefault();
-  } 
+  }
+  
+  handleCancel(){
+    this.props.onClickCancel();
+  }
 
   render() {
-    const {id, name, type } = this.state;
+    const {id, name, type, id_parent } = this.state;
+    // const {itemEdit} = this.props;
+    // console.log(itemEdit);
+    
     return (
       <div>
-        <form className="">
+        <form className="" onSubmit = {this.handleSubmit}>
           <label> Id </label>
           <input name="id" value={id} onChange={this.handleChange} />
+
+          <label> Id Parent </label>
+          <input name="id_parent" value={id_parent} onChange={this.handleChange} />
 
           <label> Tên </label>
           <input name="name" value={name} onChange={this.handleChange} />
@@ -35,7 +58,8 @@ class Form extends React.Component {
           <label> Loại </label>
           <input name="type" value={type} onChange={this.handleChange} />
 
-          <button onClick={() => this.handleSubmit(id, name, type)}> Xác nhận </button>
+          <button type="submit" > Xác nhận </button>
+          <button onClick = {this.handleCancel}> Cancel </button>
         </form>
       </div>
     );

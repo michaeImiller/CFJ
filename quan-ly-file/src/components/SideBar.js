@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import files from "../data/data-2";
-import Breadcrumb from "./Breadcrumb";
 import Form from './Form';
-// import SideBarItem from "./SideBarItem";
+import SelectParent from './SelectParent';
+import ShowDetail from './ShowDetail';
+import _ from 'lodash';
 
 let data = files;
 
@@ -11,19 +12,35 @@ class SideBar extends Component {
     super(props);
     this.state = {
       isShowForm: false,
+      isShowDetail: false,
       id_parent: 0,
-      item_add: {      },
+      item_add: {},
+      itemSelected: {},
       dataCurrent: [],
+      id_max: 0,
 
     };
     this.getChildren = this.getChildren.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
+    this.closeForm = this.closeForm.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.closeDetail = this.closeDetail.bind(this);
   }
 
   componentDidMount() {
     const { id_parent } = this.state;
     this.getChildren(id_parent);
+    this.findIdMax();
+  }
+
+  findIdMax(){
+    let idMax = data[0].id;
+    for(var i =0; i < data.length; i++ ){
+      if(data[i].id > idMax ) idMax = data[i].id;
+    }
+    this.setState({id_max : idMax });
   }
 
   getChildren(id_parent) {
@@ -41,25 +58,50 @@ class SideBar extends Component {
     }
   }
 
-  handleAdd(id, name, type, event){
-    const itemAdd = {
-      id: id,
-      id_parent: 1,
-      name: name,
-      type: type
-    }
-    this.setState({item_add :itemAdd })
-    console.log(this.state.item_add);
-    event.preventDefault();
+  handleAdd(item){
+    const {dataCurrent} = this.state;
+    const itemAdd = item;
+    dataCurrent.push(itemAdd);
+    this.setState({
+      dataCurrent : dataCurrent,
+      isShowForm : false
+  })
   }
-
+  
   toggleForm(){
     this.setState({ isShowForm : !this.state.isShowForm});
   }
 
-  render() {
-    const { isShowForm, dataCurrent, id_parent } = this.state;
+  closeForm(){
+    this.setState({ isShowForm : false});
+  }
 
+  handleShowDetail(item) {
+    this.setState({itemSelected: item, isShowDetail: true})
+  }
+
+  closeDetail (){
+    this.setState({isShowDetail: false})
+  }
+
+  handleEdit(item){
+    this.setState({item_edit: item, isShowForm: true});
+  }
+
+  handleDelete(item){
+    const {dataCurrent} = this.state;
+      _.remove(dataCurrent, (child) => {
+          return  child === item;
+      });
+      this.setState({
+        dataCurrent
+      });
+  }
+
+  render() {
+    const { isShowForm, dataCurrent, id_parent, itemSelected,isShowDetail } = this.state;
+    // console.log(dataCurrent);
+    
     const item_add = {
       id: null,
       id_parent: this.state.id_parent,
@@ -74,7 +116,11 @@ class SideBar extends Component {
           <button onClick={this.toggleForm}> Thêm mới </button>
         </div>
 
-        {isShowForm ? <Form onAdd = {(event) => this.handleAdd(event)} /> : null}
+        {/* <SelectParent /> */}
+
+        {isShowForm ? <Form onClickCancel = {this.closeForm} onAdd = {this.handleAdd} itemEdit = {this.state.item_edit} /> : null}
+
+        {isShowDetail ? <ShowDetail onCloseDetail = {this.closeDetail} itemSelected = {itemSelected} /> : null}
         {
           (id_parent >0) ? (<a href="/#" onClick={(id) => this.handleBack(id)}> Quay lại </a>) : null
         }
@@ -84,6 +130,15 @@ class SideBar extends Component {
               <a href="/#" onClick={() => this.getChildren(item.id)}>
                 {item.name}
               </a>
+              <button onClick = {() =>this.handleShowDetail(item)}>
+                Chi tiết
+              </button>
+              <button onClick = {() => this.handleEdit(item)}>
+                Edit
+              </button>
+              <button onClick = {() => this.handleDelete(item)}>
+                Delete
+              </button>
             </div>
           );
         }
