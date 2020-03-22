@@ -30,3 +30,5 @@ Rest paramter được sử dụng khi khai báo hàm, ngược lại spread ope
 	+ Gộp Object: var cloned_obj = { ...obj_1, ...obj_2 };
 
 
+
+

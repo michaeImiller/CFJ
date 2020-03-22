@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title> Test </title>
+    <link rel="stylesheet" href="./style.css" >
+</head>
+<body>
+    <div class="container">
+        <!-- <div class="form-invoice-step1">
+            <div class="header-invoice">
+                <p> Invoice <span> #123456 </span> </p>
+                    <span class="fa fa-times close-form" aria-hidden="true"></span>
+            </div>
+
+            <div class="name-invoice">
+                <p> 1994 Nissan 180SX </p>
+                <p> Vin No.: <span class="code"> CFJ3860970 </span>  </p>
+            </div>
+
+            <div class="customer-info">
+                <table>
+                    <tr>
+                        <th> Consignee Name </th>
+                        <td> Hina sheikh </td>
+                        <th> Notify Party Name </th>
+                        <td> Hina sheikh </td>
+                    </tr>
+                    <tr>
+                        <th> Consignee Address </th>
+                        <td> Baishara street mombasa </td>
+                        <th> Notify Party Address </th>
+                        <td> Baishara street mombasa </td>
+                    </tr>
+                    <tr>
+                        <th> Consignee Phone </th>
+                        <td> 0123654789 </td>
+                        <th> Notify Party Phone </th>
+                        <td> 0123654789 </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="big-form">
+                <div class="send-document">
+                    <div class="title">
+                        SEND DOCUMENT TO BELOW ADDRESS
+                    </div>
+                    <div class="group-input row">
+                        <div class="item-input col-md-4">
+                            <label for=""> Name </label>
+                            <input type="text" name="name" />
+                        </div>
+                        <div class="item-input col-md-4">
+                            <label for=""> Address  </label>
+                            <input type="text" name="address" />
+                        </div>
+                        <div class="item-input col-md-4">
+                            <label for=""> Phone  </label>
+                            <input type="text" name="phone" />
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="country-address">
+                    <div class="group-input row">
+                        <div class="item-input col-md-4">
+                            <label for=""> Country </label>
+                            <input type="text" name="name" placeholder="Enter country" />
+                        </div>
+                        <div class="item-input col-md-4">
+                            <label for=""> Port  </label>
+                            <input type="text" name="address" placeholder="Enter port & CFS (if any)" />
+                        </div>
+                        <div class="item-input col-md-4">
+                            <label for=""> City Delivery (If any)  </label>
+                            <input type="text" name="phone" placeholder="Enter City" />
+                        </div>
+                    </div>
+
+                    <div class="group-checkbox form-check row">
+                        <div class="item-checkbox col-md-4">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Show Shipper
+                            </label>
+                        </div>
+                        
+                        <div class="item-checkbox col-md-4">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Show Price Breakdown
+                            </label>
+                        </div>
+                        
+                        <div class="item-checkbox col-md-4">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Pay by 50% first (Installment payment)
+                            </label>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="payment-option row">
+                    <div class="table-checkbox col-md-6">
+
+                    </div>
+
+                    <div class="additional-option col-md-6">
+                        <label>
+                            Additional Cost
+                        </label>
+                        <textarea>
+                            Description | Cost
+                        </textarea>
+                        <label>
+                            Additional Description
+                        </label>
+                        <textarea>
+                            Description
+                        </textarea>
+                    </div>
+                </div>
+                <div class="group-actions-button">
+                    <button class="preview">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                        Preview
+                    </button>
+                    <button class="next-to-step">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        Next
+                    </button>
+                </div> 
+
+                <div class="footer-invoice row">
+                    <div class="discount col-md-4">
+                        Discount
+                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                        <input type="text"  />
+                        <select>
+                            <option value="USD"> USD </option>
+                            <option value="EURO"> EURO </option>
+                        </select>
+                        <input type="checkbox" />
+                        <label> Do not Show Vin Number </label>
+                    </div>
+
+                    <div class="issue col-md-4">
+                        Issue In Other Currencies
+                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                        <input type="text"  />
+                        <select>
+                            <option value="USD"> USD </option>
+                            <option value="EURO"> EURO </option>
+                        </select>
+                        <input type="checkbox" />
+                        <label> Apply same currency for break down cost </label>
+                    </div>
+
+                    <div class="kenya col-md-4">
+                        KENYA Invoice
+                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                        <input type="text"  />
+                        <select>
+                            <option value="USD"> KES </option>
+                        </select>
+                        <input type="checkbox" />
+                        <label> Show CFJ Kenya Bank account (USD) </label>
+                        <input type="checkbox" />
+                        <label> Issue invoice in KES and show KES Account </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-invoice-step2">
+            <div class="header-invoice">
+                <p> Invoice <span> #123456 </span> </p>
+                <button class="close-form">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="name-invoice">
+                <p> 1994 Nissan 180SX </p>
+                <p> Vin No.: <span class="code"> CFJ3860970 </span>  </p>
+            </div>
+
+            <div class="group-table">
+                <table class="customer-info">
+                    <tr>
+                        <th> Consignee Name </th>
+                        <td> Hina sheikh </td>
+                        <th> Notify Party Name </th>
+                        <td> Hina sheikh </td>
+                    </tr>
+                    <tr>
+                        <th> Consignee Address </th>
+                        <td> Baishara street mombasa </td>
+                        <th> Notify Party Address </th>
+                        <td> Baishara street mombasa </td>
+                    </tr>
+                    <tr>
+                        <th> Consignee Phone  </th>
+                        <td> +2540728786610 </td>
+                        <th> Notify Party Phone </th>
+                        <td> +2540728786610 </td>
+                    </tr>
+                </table>
+                <table class="country-info">
+                    <tr>
+                        <th> Country </th>
+                        <td> Kenya </td>
+                        <th colspan="3"> Buyer Invoice Total Amount </th>
+                        <td colspan="3"> US$ 3,285 </td>
+                    </tr>
+                    <tr>
+                        <th> Port </th>
+                        <td> Mombasa </td>
+                    </tr>
+                    <tr>
+                        <th> City Delivery </th>
+                        <td> - </td>
+                    </tr>
+                </table>
+
+                <div class="customer-optionals">
+                    <textarea name="" id="" cols="30" rows="10" placeholder="Overwrite default message">
+
+                    </textarea>
+                </div>
+            </div>
+
+            <div class="group-button">
+                <button class="back">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    Back
+                </button>
+                <button class="re-issue">
+                    <i class="fa fa-refresh" aria-hidden="true"></i>
+                    Re-issue Invoice
+                </button>
+            </div>
+        </div> -->
+
+
+        <div class="test-checkbox">
+            <div>
+                <label for="checkbox-1-1"></label>
+                <input type="checkbox" id="checkbox-1-1" class="regular-checkbox" />
+                <div class="tag">Checkbox Small</div>
+            </div>
+            <div>
+                <div class="tag">Checkbox Big</div>
+                <input type="checkbox" id="checkbox-2-1" class="regular-checkbox big-checkbox" /><label for="checkbox-2-1"></label>
+            </div>
+            <div>
+                <div class="tag">Radio Small</div>
+                <div class="button-holder">
+                    <input type="radio" id="radio-1-1" name="radio-1-set" class="regular-radio" checked /><label for="radio-1-1"></label>
+                </div>
+            </div>
+            <div>
+                <div class="tag">Radio Big</div>
+                <div class="button-holder">
+                    <input type="radio" id="radio-2-1" name="radio-2-set" class="regular-radio big-radio" /><label for="radio-2-1"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://use.fontawesome.com/4086620bc9.js"></script>
+</body>
+</html>
