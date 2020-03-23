@@ -111,7 +111,7 @@ class FormStepOne extends Component {
                                             (exclude buyer protection)
                                     </td>
                                         <td className="value">
-                                            Tính tổng HÀNG TRÊN trừ đi 95
+                                            {total>0 ? (total-95) : 0}
                                     </td>
                                     </tr>
                                 </table>
