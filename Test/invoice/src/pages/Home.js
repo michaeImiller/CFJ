@@ -48,8 +48,8 @@ class Home extends Component {
         this.setState({receiver_info: receiver_info});
     }
 
-    onChangeCheckbox1(checkItem){
-        this.setState({checkedItems1: checkItem});
+    onChangeCheckbox1(checkItems){
+        this.setState({checkedItems1: checkItems});
     }
 
     render() {

@@ -29,9 +29,8 @@ class FormStepOne extends Component {
     }
 
     handleNextPreview() {
-        const {checkedItems1 } = this.state;
         this.props.onShowReview();
-        this.props.onChangeCheckbox1(checkedItems1)
+        this.props.onChangeCheckbox1()
     }
 
     handleChangeFor = (propertyName) => (event) => {
@@ -60,7 +59,7 @@ class FormStepOne extends Component {
                         <div className="send-document container">
                             <div className="title row">
                                 SEND DOCUMENT TO BELOW ADDRESS
-                        </div>
+                            </div>
                             <div className="group-input row">
                                 <div className="item-input">
                                     <label> Name </label>
