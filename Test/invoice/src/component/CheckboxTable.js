@@ -17,7 +17,7 @@ class CheckboxTable extends React.Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
-        this.handleCalculateTotal = this.handleCalculateTotal.bind(this);
+        // this.handleCalculateTotal = this.handleCalculateTotal.bind(this);
     }
 
     handleChange(e) {
@@ -43,23 +43,21 @@ class CheckboxTable extends React.Component {
         
     }
 
-    handleCalculateTotal() {
-        const { checkedValue } = this.state;
-        let total = Array.from(checkedValue.values());
-        const reducer = (accumulator, currentValue) => accumulator + currentValue;
-        // if(total.length>0){
-        //     this.setState({total: total.reduce(reducer) })
-        // }
+    // handleCalculateTotal() {
+    //     const { checkedValue } = this.state;
+    //     let total = Array.from(checkedValue.values());
+    //     const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    //     // if(total.length>0){
+    //     //     this.setState({total: total.reduce(reducer) })
+    //     // }
         
-        if(total.length>0){
-            this.props.onChangeToTal(total.reduce(reducer));
-        }
-    }
+    //     if(total.length>0){
+    //         this.props.onChangeToTal(total.reduce(reducer));
+    //     }
+    // }
 
 
     render() {
-        const { checkedItems, checkedValue } = this.state;
-
         return (
             <React.Fragment>
                 {data.map(item => (

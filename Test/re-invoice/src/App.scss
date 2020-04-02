@@ -1,0 +1,298 @@
+$color-letter: #2f353a;
+div,
+p,
+span {
+	font-family: Roboto;
+	color: $color-letter;
+}
+.form-invoice-step1,
+.form-invoice-step2 {
+	width: 870px;
+	margin: 0 auto;
+	display: block;
+}
+
+.group-input {
+	.item-input {
+		width: 33.333%;
+		padding: 0 5px;
+		label {
+			display: block;
+			font-weight: bold;
+			font-size: 14px;
+			line-height: 140%;
+		}
+		input {
+			width: 100%;
+			height: 36px;
+			line-height: 36px;
+			padding-left: 10px;
+			border: 1px solid #c8ced3;
+		}
+	}
+}
+
+.error-validate, .error {
+	color: red;
+}
+.form-invoice-step1,
+.form-invoice-step2{
+	border: 1px solid #ebebeb;
+
+}
+	
+.header-invoice {
+	position: relative;
+	display: flex;
+	height: 40px;
+	line-height: 40px;
+	background-color: #e4e5e6;
+	font-weight: bold;
+	font-size: 20px;
+	padding-left: 20px;
+	span.close-form {
+		height: 40px;
+		line-height: 40px;
+		position: absolute;
+		right: 20px;
+		top: 0;
+	}
+}
+.name-invoice {
+	font-size: 14px;
+	margin-top: 20px;
+	font-weight: 700;
+	padding-left: 20px;
+	margin-bottom: 20px;
+	p {
+		margin: 0;
+	}
+	span.code {
+		font-weight: 100;
+	}
+}
+
+.customer-info {
+	margin-bottom: 20px;
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		th,
+		td {
+			font-size: 14px;
+		}
+		th {
+			background: #f0f3f5;
+			width: 150px;
+			height: 36px;
+			line-height: 140%;
+			border: 1px solid #c8ced3;
+			padding-left: 9px;
+		}
+		td {
+			padding-left: 9px;
+			border: 1px solid #c8ced3;
+		}
+	}
+}
+
+
+.big-form {
+	.send-document {
+		padding-bottom: 13px;
+		.title {
+			font-style: normal;
+			font-weight: bold;
+			font-size: 14px;
+			line-height: 22px;
+			background: #e4e5e6;
+			border-radius: 5px 5px 0px 0px;
+			padding: 4px 0 4px 10px;
+		}
+		.group-input {
+			padding: 10px 5px 13px 5px;
+			border: 1px solid #c8ced3;
+			border-radius: 0px 0px 5px 5px;
+		}
+	}
+	.country-address {
+		.group-input {
+			margin-bottom: 20px;
+		}
+		.item-checkbox {
+			margin-right: 15px;
+		}
+	}
+	.payment-option{
+		.table-checkbox{
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				th,
+				td {
+					font-size: 14px;
+					width: 50%;
+					padding: 8px 0px;
+					border: 1px solid #c8ced3;
+				}
+				td.key {
+					background: #F0F3F5;
+					width: 50%;
+					font-weight: bold;
+					font-size: 14px;
+					line-height: 140%;
+					padding-left: 10px;
+				}
+				td.value {
+					padding-left: 10px;
+					span.currency-unit{
+						margin-right: 10px;
+						float: right;
+						color: #999999;
+					}
+				}
+			}
+		}
+		.additional-option{
+			label{
+				display: block;
+				font-weight: bold;
+				font-size: 14px;
+				line-height: 140%;
+				color: #000000;
+				margin-bottom: 10px;
+				label:last-child{
+					margin-top: 22px;
+				}
+			}
+			textarea{
+				height: 120px;
+				width: 100%;
+				
+			}
+		}
+	}
+}
+.group-actions-button{
+	margin-top: 20px;
+	button{
+		font-weight: 900;
+		font-size: 18px;
+		line-height: 21px;
+		text-align: center;
+		height: 40px;
+		line-height: 40px;
+		border: none;
+		color: #fff;
+		i{
+			color: #fff;
+			margin-right: 10px;
+		}
+		&.preview{
+			background: linear-gradient(180deg, #5AA6D3 0%, #418CB9 100%);
+			border-radius: 20px;
+			width: 130px;
+		}
+		&.next-to-step{
+			float: right;
+			width: 50%;
+			background: linear-gradient(180deg, #13AB18 0%, #0F7112 100%);
+			border-radius: 30px;
+		}
+	}
+}
+.footer-invoice{
+	background: #E9F4FB;
+	padding: 20px;
+	margin-top: 30px;
+	.col-md-4{
+		.title{
+			font-weight: bold;
+			font-size: 14px;
+			line-height: 22px;
+			i{
+				margin-left: 5px;
+			}
+		}
+		.input-select{
+			position: relative;
+			margin-top: 10px;
+			margin-bottom: 20px;
+			input{
+				width: 100%;
+				height: 36px;
+				line-height: 36px;
+			}
+			select{
+				position: absolute;
+				right: 0;
+				top: 0;
+				line-height: 36px;
+				height: 36px;
+			}
+		}
+	}
+}
+.body-form {
+	padding: 0 20px;
+	
+}
+
+.form-invoice-step2{
+	table.country-info{
+		width: 100%;
+		border-collapse: collapse;
+		th,
+		td {
+			font-size: 14px;
+		}
+		th {
+			background: #f0f3f5;
+			width: 150px;
+			height: 36px;
+			line-height: 140%;
+			border: 1px solid #c8ced3;
+			padding-left: 9px;
+		}
+		td {
+			padding-left: 9px;
+			border: 1px solid #c8ced3;
+		}
+	}
+	.customer-optionals{
+		margin-top: 20px;
+		.title{
+			font-weight: bold;
+			font-size: 14px;
+			line-height: 140%;
+			margin-bottom: 10px;
+			display: block;
+		}
+		textarea{
+			width: 100%;
+			height: 70px;
+		}
+
+	}
+	.group-button{
+		margin: 20px 0px;
+		button{
+			border-radius: 30px;
+			border: none;
+			width: 50%;
+			height: 40px;
+			line-height: 40px;
+			color: #fff;
+			width: 100%;
+			i{
+				margin-right: 5px;
+			}
+		}
+		button.back{
+			background: linear-gradient(180deg, #DD5051 0%, #C14748 100%);
+		}
+		button.re-issue{
+			background: linear-gradient(180deg, #13AB18 0%, #0F7112 100%);
+		}
+	}
+}
